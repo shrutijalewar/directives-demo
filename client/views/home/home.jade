@@ -1,8 +1,13 @@
 h3 Home
 div(ng-repeat= 'person in people', cm-greeting, name='{{person.name}}', age='{{person.age}}')
 div(cm-clock, frequency='2000')
-div(cm-clock, frequency='1000')
 div(cm-clock, frequency='500')
 div(cm-clock, frequency='250')
-div(cm-clock, frequency='10')
-
+div(ng-repeat= 'symbol in symbols', cm-stock, symbol = '{{symbol}}')
+div(cm-weather, zip= '37215')
+div(cm-weather, zip= '10026')
+div(cm-weather, zip= '47202')
+div(cm-weather, zip= '20001')
+div(cm-movie, title= 'Das Boot')
+div(cm-movie, title= 'Incendies')
+div(cm-movie, title= 'Oldboy')
