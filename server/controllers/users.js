@@ -35,3 +35,15 @@ exports.logout = function(req, res){
   });
 };
 
+exports.addMovie = function(req, res){
+  req.user.addMovie(function(title){
+  res.send({title:title});
+  });
+};
+
+exports.indexMovie = function(){
+
+};
+exports.removeMovie = function(){
+
+};

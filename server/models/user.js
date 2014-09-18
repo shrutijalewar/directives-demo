@@ -32,5 +32,21 @@ User.login = function(o, cb){
   });
 };
 
+User.prototype.allMovie = function(){
+
+};
+
+User.prototype.addMovie = function(o, cb){
+  this.titles = this.titles || [];
+  this.titles.push(o.title);
+  var self = this;
+  User.collection.save(this, function(){
+    cb(null, self);
+  });
+};
+
+User.prototype.removeMovie = function(){
+
+};
 module.exports = User;
 

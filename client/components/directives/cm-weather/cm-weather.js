@@ -4,8 +4,8 @@
 
   angular.module('cmWeatherModule', [])
   .factory('WeatherApi', ['$http', function($http){
-    function weather(zip){
-      return $http.jsonp('http://api.wunderground.com/api/467fe65116e04adf/conditions/q/'+ zip +'.json?callback=JSON_CALLBACK');
+    function weather(query){
+      return $http.jsonp('http://api.wunderground.com/api/467fe65116e04adf/conditions/q/'+ query +'.json?callback=JSON_CALLBACK');
     }
 
     return {weather:weather};
@@ -22,8 +22,17 @@
                       });
                     };
     o.controller = ['$scope', 'WeatherApi', function($scope, WeatherApi){
-                     function getWeather(){
-                       WeatherApi.weather($scope.zip).then(function(response){
+
+                      $scope.$on('position', function(event, pos){
+                        if($scope.zip){return;}
+                        console.log('i am the weather', pos);
+                        var query = pos.coords.latitude + ',' + pos.coords.longitude;
+                        console.log(query);
+                        getWeather(query);
+                      });
+
+                     function getWeather(query){
+                       WeatherApi.weather(query).then(function(response){
                        //debugger;
                         $scope.temp = response.data.current_observation.temp_c;
                         $scope.icon = response.data.current_observation.icon_url;
@@ -32,7 +41,7 @@
                     }
 
                      $scope.id = $interval(getWeather, 300000);
-                     getWeather();
+                     if($scope.zip){getWeather($scope.zip);}
                     }];
 
 

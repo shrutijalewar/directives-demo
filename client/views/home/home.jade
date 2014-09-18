@@ -1,4 +1,14 @@
 h3 Home
+input(type='text', ng-model='title')
+button(ng-click='addMovie()') Add Movie
+div(cm-locate)
+
+div
+
+  div(ng-repeat= 'title in titles', cm-movie, title='{{title}}', remove='delMovie($index)')
+
+    div
+
 div(ng-repeat= 'person in people', cm-greeting, name='{{person.name}}', age='{{person.age}}')
 div(cm-clock, frequency='2000')
 div(cm-clock, frequency='500')
@@ -8,6 +18,4 @@ div(cm-weather, zip= '37215')
 div(cm-weather, zip= '10026')
 div(cm-weather, zip= '47202')
 div(cm-weather, zip= '20001')
-div(cm-movie, title= 'Das Boot')
-div(cm-movie, title= 'Incendies')
-div(cm-movie, title= 'Oldboy')
+div(cm-weather)

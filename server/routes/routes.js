@@ -27,6 +27,9 @@ module.exports = function(app, express){
 
   app.use(security.bounce);
   app.delete('/logout', users.logout);
+  app.get('/', users.indexMovie);
+  app.post('/', users.addMovie);
+  //app.delete('/', users.removeMovie);
 
   console.log('Express: Routes Loaded');
 };
